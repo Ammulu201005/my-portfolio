@@ -5,55 +5,524 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Computer Science Student</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #C8A2C8;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #AA98A9;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 1rem;
-        }
-        nav a:hover {
-            background-color: #575757;
-        }
-        .content {
-            padding: 2rem;
-        }
-        .section {
-            margin-bottom: 2rem;
-        }
-        .section h2 {
-            color: #333;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #C8A2C8;
-            color: white;
-        }
+    
+:root {
+    --bg:white;
+    --surface: #FFFFFF;
+    --surface-hover: #F0EBDD;
+    --accent: #C6A96C;
+    --accent-hover: #B39455;
+    --green: #24483D;
+    --green-deep: #19372F;
+    --text: #26332D;
+    --muted: #68736B;
+    --border: #E4DED1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    background: var(--green);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    border-bottom: 3px solid var(--accent);
+}
+
+header h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    letter-spacing: 1px;
+}
+
+header p {
+    color: #E8D7AE;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.6rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: var(--green);
+    text-decoration: none;
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+    transition: color 0.25s, background 0.25s;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: var(--green-deep);
+    background: var(--surface-hover);
+}
+
+.content {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    flex: 1;
+}
+
+.section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 90px;
+}
+
+.section h2 {
+    color: var(--green);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1.25rem;
+}
+
+.section h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    background: var(--accent);
+}
+
+p {
+    color: var(--muted);
+}
+
+a {
+    color: var(--green);
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+footer {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--green-deep);
+    border-top: 3px solid var(--accent);
+    color: #F8F5EE;
+}
+
+
+@media (max-width: 600px) {
+    nav {
+        gap: 0;
+        padding: 0.5rem 0.25rem;
+    }
+
+    nav a {
+        padding: 0.5rem 0.55rem;
+        font-size: 0.82rem;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+.hero {
+    background: linear-gradient(135deg, #24483D, #19372F);
+    color: #F8F5EE;
+    padding: 5rem 1.5rem;
+    text-align: left;
+    border-bottom: 3px solid var(--accent);
+}
+
+.hero-content {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+.hero .hero-label {
+    color: #D0B477;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.3rem, 6vw, 4rem);
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    letter-spacing: -1px;
+}
+
+.hero h2 {
+    color: #E4C989;
+    font-size: clamp(1.15rem, 3vw, 1.65rem);
+    font-weight: 500;
+    margin: 0 0 1.25rem;
+}
+
+.hero .hero-description {
+    color: #F0EEE7;
+    max-width: 650px;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.hero-button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.8rem 1.35rem;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.hero-button:hover {
+    transform: translateY(-2px);
+}
+
+.primary-button {
+    background: #D0B477;
+    color: #19372F;
+}
+
+.primary-button:hover {
+    background: #E1C994;
+}
+
+.secondary-button {
+    border: 1px solid #E4C989;
+    color: #F8F5EE;
+}
+
+.secondary-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+.about-card {
+    background: var(--surface);
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(36, 72, 61, 0.05);
+}
+
+.about-card p {
+    margin: 0 0 1rem;
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+.about-card .about-intro {
+    color: var(--green);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+
+.skills-intro {
+    margin-top: -0.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.skill-card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(36, 72, 61, 0.05);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(36, 72, 61, 0.10);
+}
+
+.skill-card h3 {
+    color: var(--green);
+    font-size: 1.08rem;
+    margin: 0 0 1rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.skill-tags span {
+    display: inline-block;
+    background: #F0EBDD;
+    color: var(--green-deep);
+    border: 1px solid #E5D9C1;
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.88rem;
+}
+
+@media (max-width: 650px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.project-tech {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-top: 1rem;
+}
+
+.project-tech strong {
+    color: var(--green);
+    font-weight: 600;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.certificate-card {
+    background: var(--surface);
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(36, 72, 61, 0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.certificate-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(36, 72, 61, 0.08);
+}
+
+.certificate-card h3 {
+    color: var(--green);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+    min-height: 3rem;
+}
+
+.certificate-card a {
+    display: block;
+    color: var(--green);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.certificate-card img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background: var(--bg);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+.certificate-card a:hover span {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 4px;
+}
+
+@media (max-width: 650px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certificate-card h3 {
+        min-height: auto;
+    }
+}
+
+
+/* Internship details beside certificate */
+
+.internship-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(180px, 1fr);
+    gap: 2rem;
+    align-items: center;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(36, 72, 61, 0.04);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.internship-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(36, 72, 61, 0.08);
+}
+
+.internship-details ul {
+    padding-left: 1.25rem;
+}
+
+.internship-details li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.internship-certificate a {
+    display: block;
+    text-align: center;
+    margin-top: 0.75rem;
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.internship-certificate a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 4px;
+}
+
+
+@media (max-width: 650px) {
+    .internship-item {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.25rem;
+    }
+
+    .internship-certificate {
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+footer {
+    width: 100vw;
+    margin-top: auto;
+    margin-left: calc(50% - 50vw);
+    flex-shrink: 0;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--green-deep);
+    border-top: 3px solid var(--accent);
+    color: #F8F5EE;
+}
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>Portfolio of ARIKATLA NAGA VAISHNAVI</h1>
-        <p>Computer Science Student </p>
-    </header>
+   
+<header class="hero">
+    <div class="hero-content">
+        <p class="hero-label">HELLO, I'M</p>
+
+        <h1>Vaishnavi Arikatla</h1>
+
+        <h2>Aspiring AI/ML Engineer &amp; Software Developer</h2>
+
+        <p class="hero-description">
+            I build practical solutions using machine learning and web
+            technologies, and enjoy turning ideas into useful applications.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#projects" class="hero-button primary-button">
+                Explore My Work
+            </a>
+
+            <a href="#contact" class="hero-button secondary-button">
+                Contact Me
+            </a>
+        </div>
+    </div>
+</header>
+
     <nav>
         <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#certifications">Certifications</a>
         <a href="#internships">Internships</a>
@@ -63,101 +532,325 @@
     <div class="content">
         <div id="about" class="section">
             <h2>About Me</h2>
-            <p>Hello! I am a passionate computer science student with a interest in Artificial Intelligence and Machine Learning.</p>
-            <p>Motivated Computer Science undergraduate with hands-on experience in machine learning, web development. Skilled in Python, C++, and Scikit-Learn with a strong foundation in algorithmic thinking and software design. Passionate about building intelligent systems that solve real-world problems. Actively seeking opportunities in AI/ML and software engineering.</p>
-        </div>
-        <div id="projects" class="section">
-            <h2>Projects</h2>
-            <ul>
-                <p><strong>Employee Burnout Analysis:</strong></p>
-                <p><li>In the project we developed a predective model with some preferences based on that the model would give the list of emplopyees who would leave the company or who should be fired from the company as their work is not upto the mark.</li></p>
-                <p><li> Trained classification models to predict burnout risks using historical HR data.</li></p>
-                <p><li>	Outcome: Achieved 87% model accuracy with RandomForestClassifier.</li></p>
-                <p><li><strong>Technoligies used:</strong>Python, Scikit-Learn, Pandas, Matplotlib</li></p>
-            
-            </ul>
-            <ul>
-                <p><strong>Loan Eligibility Prediction:</strong></p>
-                <p><li>Built ML model to predict loan approval based on customer data.</li></p>
-                <p><li>Outcome: Improved accuracy using feature scaling and hyperparameter tuning.</li></p>
-                <p><li><strong>Technoligies used:</strong>Python, Scikit-Learn, Pandas, Jupyter Notebook</li></p>
-            </ul>
-        </div>
-        <div id="certifications" class="section">
-            <h2>Certifications</h2>
-            <ul>
-                <li>Python Programming for data scienceCertification</li>
-               <a href="https://drive.google.com/file/d/1-kIpXqf5rXFwhhsCn7va1Hlm4ligp9sl/view?usp=drive_link" target="_blank">
-            <img src="python_certificate.jpg" alt="certificate">
-        </a>
-            </ul>
-            <ul>
-                <li>Foundation of Cloud Computing Certification</li>
-                <a href="https://drive.google.com/file/d/1-xS8j5cqx8dfYkTvH5zOhP3qiq6lXmN7/view?usp=drive_link" target="_blank">
-            <img src="cloud_certificate.jpg" alt="certificate">
-        </a>
-            </ul>
-            <ul>
-                <li>Artificial Intelligence</li>
-                <a href="https://drive.google.com/file/d/1Eyls43jgbEzlMgYNamvNZ617OWHAKIJ5/view?usp=drive_link" target="_blank">
-                <img src="ai_certificate.jpg" alt="certificate">
-            </a></ul>
-            <ul>
-                <li>Introduction to Deep Learning</li>
-                <a href="https://drive.google.com/file/d/1mnnhPrZPowSU-cHVZCief-FGs28hfpxk/view?usp=drive_link" target="_blank">
-                <img src="ml_certificate.jpg" alt="certificate">
-            </a></ul>
-            
-        </div>
-        <div id="internships" class="section">
-            <h2>Internships</h2>
-            <ul>
-            <p><strong>IBM</strong></p>
-            <P>AI & ML Intern</P>
-            <a href="https://drive.google.com/file/d/1GlIEqvDILLsiyRq3RqRMIgCAuK_kw5LH/view?usp=drive_link" target="_blank">
-            <img src="ibm_certificate.jpg" alt="IBM Internship Certificate">
-            </a>
-            <p><li>Built a machine learning solution to predict employee burnout, leveraging Scikit-Learn and Pandas for data handling and model training</li></p>
-            <p><li> Executed end-to-end preprocessing tasks including data wrangling, feature extraction, and normalization, achieving over 85% model accuracy.</li></p>
-            <p><li>Applied Matplotlib and Seaborn to produce detailed visual analyses, enabling clearer interpretation of patterns and key indicators.</li></p>
-            </ul>
-            <ul>
-                <p><strong>Main Flow Pvt.Ltd</strong></p>
-                <p>Full stack Developer Intern</p>
-                <a href="https://drive.google.com/file/d/1x8Qmnw6P7H_gR6DfXYpbC92K6ZVg01Ho/view?usp=drive_link" target="_blank">
-                <img src="mainflow_certificate.jpg" alt="Main Flow Internship Certificate">
-                </a>
-                <p><li>Developed a full-stack web application with Python and Flask to handle user management, product inventory, and sales tracking</li></p>
-                <p><li>Implemented dynamic frontend layouts using HTML and CSS to ensure a responsive and user-friendly interface</li></p>
-                <p><li> Integrated backend logic with database operations to enable seamless CRUD functionality for users and products.</li></p>
-            
-            </ul>
+            <div class="about-card">
+            <p class="about-intro">
+                I'm Vaishnavi Arikatla, a Computer Science graduate
+                passionate about Artificial Intelligence, Machine Learning,
+                and Software Development.
+            </p>
 
-            <ul>
-                <p><strong>Data valley</strong></p>
-                <p>Full stack Developer intern</p>
-                <a href="https://drive.google.com/file/d/1xfurBt7j_GUhGXEB6OcQCQ6rZseEj7Wy/view?usp=drive_link" target="_blank">
-                <img src="datavalley_certificate.jpg" alt="Data Valley Internship Certificate">
-                </a>
-                <p><li>Completed an internship at Data Valley, gaining hands-on learning experience in Python, HTML, CSS, React, Django, and MySQL for backend development.</li></p>
-                <p><li>Strengthened foundational skills in full-stack web development, focusing on frontend design, backend logic, and database queries, preparing for real-world application development.</li></p>
-            </ul>
+            <p>
+                I enjoy using Python and machine learning tools to explore data,
+                build predictive models, and solve practical problems. Through
+                academic projects and internships, I've gained experience in
+                data preprocessing, model development, and web application
+                development.
+            </p>
 
+            <p>
+                I'm eager to begin my professional journey, contribute to
+                real-world projects, and continue learning as part of a
+                collaborative team.
+           </p>
+           </div>
+        </div>
+    
+    <div id="skills" class="section">
+        <h2>Technical &amp; Soft Skills</h2>
         
-        <div id="contact" class="section">
-            <h2>Contact</h2>
-            <p>vaishnviarikatla05@gmail.com</p>
-            <p>Phone: +91 9398857542</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/vaishnavi-arikatla-171575269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">linkedin.com/in/vaishnaviprofile</a></p>
-            <p>GitHub: <a href="https://github.com/Ammulu201005" target="_blank">github.com/vaishnavigithub</a></p>
+        <div class="skills-grid">
+        <div class="skill-card">
+            <h3>Languages</h3>
+            <div class="skill-tags">
+                <span>Python</span>
+                <span>C</span>
+                <span>C++</span>
+            </div>
         </div>
-        <div id="resume" class="section">
-            <h2>Resume</h2>
-            <p>Click the link below to download my resume:</p>
-            <a href="https://drive.google.com/file/d/1zkjZzflxCbBnsAuAZLC6rsw7bo_lyv_Y/view?usp=drive_link" download>Download My Resume (PDF)</a>
-           <!-- <p>Or preview it below:</p>-->
+
+        <div class="skill-card">
+            <h3>Libraries</h3>
+            <div class="skill-tags">
+                <span>Scikit-Learn</span>
+                <span>Pandas</span>
+                <span>NumPy</span>
+                <span>Matplotlib</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Tools</h3>
+            <div class="skill-tags">
+                <span>Jupyter Notebook</span>
+                <span>GitHub</span>
+                <span>VS Code</span>
+                <span>MySQL</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Web Technologies</h3>
+            <div class="skill-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Concepts</h3>
+            <div class="skill-tags">
+                <span>Data Structures</span>
+                <span>OOP</span>
+                <span>Machine Learning</span>
+            </div>
+        </div>
+
+        <div class="skill-card">
+            <h3>Soft Skills</h3>
+            <div class="skill-tags">
+                <span>Team collaboration</span>
+                <span>Communication</span>
+                <span>Time management</span>
+            </div>
+        </div>
         </div>
     </div>
+    
+    <div id="projects" class="section">
+        <h2>Projects</h2>
+            
+            <p class="projects-intro">
+                Practical projects showcasing my experience with machine learning,
+                data analysis, and application development.
+            </p>
+
+        <div class="projects-grid">
+            <article class="project-card">
+                <h3>Employee Burnout Analysis</h3>
+                <p class="project-category">MACHINE LEARNING</p>
+                <p>
+                    Developed a machine learning model to analyze employee data
+                    and predict burnout risk, supporting the identification of
+                    potential employee attrition.
+                </p>
+
+                <p class="project-result">
+                    Model accuracy: 87%
+                </p>
+                Python,Scikit-Learn,Pandas,Matplotlib
+            </article>
+
+            <article class="project-card">
+                <h3>Loan Eligibility Prediction</h3>
+                <p class="project-category">PREDICTIVE ANALYTICS</p>
+                <p>
+                    Built a machine learning model to predict loan eligibility
+                    from customer data, using feature scaling and
+                    hyperparameter tuning to improve model performance.
+                </p>
+            
+                Python,Scikit-Learn,Pandas,Jupyter Notebook
+            
+            </article>
+
+            <article class="project-card">
+                <h3>Speech Emotion Recognition</h3>
+                <p class="project-category">SPEECH &amp; AI</p>
+                <p>
+                    Developed a speech emotion recognition application to
+                    analyze audio and identify emotions using speech features
+                    and machine learning.
+                </p>
+                Python,Streamlit,FFmpeg
+            </article>
+        
+            <article class="project-card">
+                <h3>Safety Eye</h3>
+                <p class="project-category">COMPUTER VISION &amp; ML</p>
+                <p>
+                    Developed a safety-focused application using Python and machine
+                    learning, with OpenCV for image annotation. Integrated the
+                    components using Docker and used Grafana to visualize reports
+                    and monitoring data.
+                </p>
+                Python,Machine Learning,OpenCV,Docker,Grafana
+            </article>
+        </div>
+    </div>
+  
+
+    <div id="certifications" class="section">
+        <h2>Certifications</h2>
+        
+        <div class="certifications-grid">
+            
+            <article class="certificate-card">
+                <h3>Python Programming for Data Science</h3>
+                <a href="https://drive.google.com/file/d/1-kIpXqf5rXFwhhsCn7va1Hlm4ligp9sl/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
+                <img src="images/python_certificate.png" alt="Python certificate">
+                     
+                <span>View Certificate ↗</span>
+                </a>
+            </article>
+            
+            <article class="certificate-card">
+                <h3>Foundation of Cloud Computing</h3>
+                <a href="https://drive.google.com/file/d/1-xS8j5cqx8dfYkTvH5zOhP3qiq6lXmN7/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
+                <img src="images/cloud_certificate.png" alt="cloud certificate">
+                <span>View Certificate ↗</span>
+                </a>
+            </article>
+
+            <article class="certificate-card">
+                <h3>Artificial Intelligence</h3>
+                <a href="https://drive.google.com/file/d/1Eyls43jgbEzlMgYNamvNZ617OWHAKIJ5/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
+                <img src="images/ai_certificate.png"  alt="Artificial Intelligence certificate">
+                <span>View Certificate ↗</span>
+                </a>
+            </article>
+
+            <article class="certificate-card">
+                <h3>Introduction to Deep Learning</h3>
+                <a href="https://drive.google.com/file/d/1mnnhPrZPowSU-cHVZCief-FGs28hfpxk/view?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">
+                <img src="images/ml_certificate.png"
+                     alt="Introduction to Deep Learning certificate">
+                <span>View Certificate ↗</span>
+                </a>
+            </article>
+        </div>
+    </div>
+    
+    <div id="internships" class="section">
+        <h2>Internships</h2>
+        <div class="internships-grid">
+            <div class="internship-item">
+                <div class="internship-details">
+                    <h3>IBM</h3>
+                    <p class="internship-role">AI & ML; ML Intern</p>
+                    <h4>Key Responsibilities</h4>
+                    <ul>
+                        <li>Built a machine learning solution to predict employee burnout using Scikit-Learn and Pandas.</li>
+                        <li>Performed data preprocessing, feature engineering, and normalization, achieving over 85% model accuracy.</li>
+                        <li>Used Matplotlib and Seaborn to visualize data patterns and identify key indicators.</li>
+                    </ul>
+                </div>
+                
+                <div class="internship-certificate">
+                    <a href="https://drive.google.com/file/d/1GlIEqvDILLsiyRq3RqRMIgCAuK_kw5LH/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="images/ibm_certificate.png"
+                    alt="IBM AI and ML Internship Certificate">
+                    </a>
+                    
+                    <a href="https://drive.google.com/file/d/1GlIEqvDILLsiyRq3RqRMIgCAuK_kw5LH/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    View Certificate ↗
+                    </a>
+                </div>
+            </div>
+            
+            <div class="internship-item">
+                <div class="internship-details">
+                    <h3>Main Flow Pvt. Ltd.</h3>
+                    <p class="internship-role">Full Stack Developer Intern</p>
+                    <h4>Key Responsibilities</h4>
+                    <ul>
+                        <li>Developed a full-stack web application using Python and Flask for user management, product inventory, and sales tracking.</li>
+                        <li>Created frontend layouts using HTML and CSS for a user-friendly interface.</li>
+                        <li>Integrated backend logic with database operations to support CRUD functionality for users and products.</li>
+                    </ul>
+                </div>
+                
+                <div class="internship-certificate">
+                    <a href="https://drive.google.com/file/d/1x8Qmnw6P7H_gR6DfXYpbC92K6ZVg01Ho/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="images/mainflow_certificate.png"
+                    alt="Main Flow Internship Certificate">
+                    </a>
+                    
+                    <a href="https://drive.google.com/file/d/1x8Qmnw6P7H_gR6DfXYpbC92K6ZVg01Ho/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    View Certificate ↗
+                    </a>
+                </div>
+            </div>
+                
+            <div class="internship-item">
+                <div class="internship-details">
+                    <h3>Data Valley</h3>
+                    <p class="internship-role">Full Stack Developer Intern</p>
+                    <h4>Key Responsibilities</h4>
+                    <ul>
+                        <li>Gained practical experience with Python, HTML, CSS, React, Django, and MySQL.</li>
+                        <li>Strengthened foundational skills in frontend development, backend logic, and database queries.</li>
+                    </ul>
+                </div>
+                
+                <div class="internship-certificate">
+                    <a href="https://drive.google.com/file/d/1xfurBt7j_GUhGXEB6OcQCQ6rZseEj7Wy/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="images/datavalley_certificate.png"
+                    alt="Data Valley Internship Certificate">
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1xfurBt7j_GUhGXEB6OcQCQ6rZseEj7Wy/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    View Certificate ↗
+                    </a>
+                </div>
+            </div>
+            
+            <div class="internship-item">
+                <div class="internship-details">
+                    <h3>Infosys Springboard</h3>
+                    <p class="internship-role">AI & ML Intern</p>
+                    <p>
+                        Worked on the Safety Eye project, a safety-focused
+                        application developed as part of the internship.
+                    </p>
+                    <h4>Key Contributions</h4>
+                    <ul>
+                        <li>Developed a safety-focused application using Python and machine learning to support safety monitoring.</li>
+                        <li>Used OpenCV for image processing and annotation.</li>
+                        <li>Integrated application components using Docker.</li>
+                        <li>Used Grafana to visualize reports and monitoring data.</li>
+                    </ul>
+                </div>
+                
+                <div class="internship-certificate">
+                    <a href="https://drive.google.com/file/d/1AB88ar7SKKZHrjNLFqb7Wzgjz3Sg-9Vo/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    <img src="images/infosys_certificate.png"
+                    alt="Infosys Springboard Internship Certificate">
+                    </a>
+                    <a href="https://drive.google.com/file/d/1AB88ar7SKKZHrjNLFqb7Wzgjz3Sg-9Vo/view?usp=drive_link"
+                    target="_blank" rel="noopener noreferrer">
+                    View Certificate ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="contact" class="section">\
+        <h2>Contact</h2>
+        <p>vaishnviarikatla05@gmail.com</p>
+        <p>Phone: +91 9398857542</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/vaishnavi-arikatla-171575269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">linkedin.com/in/vaishnaviprofile</a></p>
+        <p>GitHub: <a href="https://github.com/Ammulu201005" target="_blank">github.com/vaishnavigithub</a></p>
+    </div>
+    
+    <div id="resume" class="section">
+        <h2>Resume</h2>
+        <p>Click the link below to download my resume:</p>
+        <a href="https://drive.google.com/file/d/1zkjZzflxCbBnsAuAZLC6rsw7bo_lyv_Y/view?usp=drive_link" download>Download My Resume (PDF)</a>
+    </div>
+    </div>
+    
     <footer>
         <p>© 2025 vaishnavi. All rights reserved.</p>
     </footer>
